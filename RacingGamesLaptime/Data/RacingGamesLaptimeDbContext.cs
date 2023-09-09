@@ -105,32 +105,35 @@ public partial class RacingGamesLaptimeDbContext : DbContext
 
             entity.HasIndex(e => e.CarCategory, "car_category_idx");
 
-            entity.HasIndex(e => e.Car, "car_idx");
-
-            entity.HasIndex(e => e.Circuit, "circuit_idx");
-
-            entity.HasIndex(e => e.GameName, "game_name_idx");
-
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Car).HasColumnName("car");
+            entity.Property(e => e.Car)
+                .HasMaxLength(45)
+                .HasColumnName("car");
             entity.Property(e => e.CarCategory)
                 .HasMaxLength(45)
                 .HasColumnName("car_category");
-            entity.Property(e => e.Circuit).HasColumnName("circuit");
-            entity.Property(e => e.GameName).HasColumnName("game_name");
+            entity.Property(e => e.CarCountry)
+                .HasMaxLength(45)
+                .HasColumnName("car_country");
+            entity.Property(e => e.Circuit)
+                .HasMaxLength(45)
+                .HasColumnName("circuit");
+            entity.Property(e => e.CircuitCountry)
+                .HasMaxLength(45)
+                .HasColumnName("circuit_country");
+            entity.Property(e => e.CircuitLayout)
+                .HasMaxLength(45)
+                .HasColumnName("circuit_layout");
+            entity.Property(e => e.GameName)
+                .HasMaxLength(45)
+                .HasColumnName("game_name");
+            entity.Property(e => e.IsCarMod)
+                .HasMaxLength(45)
+                .HasColumnName("isCarMod");
+            entity.Property(e => e.IsCircuitMod)
+                .HasMaxLength(45)
+                .HasColumnName("isCircuitMod");
             entity.Property(e => e.Time).HasColumnName("time");
-
-            entity.HasOne(d => d.CarNavigation).WithMany(p => p.Laptimes)
-                .HasForeignKey(d => d.Car)
-                .HasConstraintName("car");
-
-            entity.HasOne(d => d.CircuitNavigation).WithMany(p => p.Laptimes)
-                .HasForeignKey(d => d.Circuit)
-                .HasConstraintName("circuit");
-
-            entity.HasOne(d => d.GameNameNavigation).WithMany(p => p.Laptimes)
-                .HasForeignKey(d => d.GameName)
-                .HasConstraintName("game_name");
         });
 
         OnModelCreatingPartial(modelBuilder);

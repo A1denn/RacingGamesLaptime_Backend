@@ -7,19 +7,23 @@ public partial class Laptime
 {
     public Guid Id { get; set; }
 
-    public int? Time { get; set; }
+    public int Time { get; set; }
 
-    public Guid? Car { get; set; }
+    public string Car { get; set; } = null!;
 
-    public Guid? GameName { get; set; }
+    public string GameName { get; set; } = null!;
 
-    public Guid? Circuit { get; set; }
+    public string Circuit { get; set; } = null!;
 
-    public string? CarCategory { get; set; }
+    public string CarCategory { get; set; } = null!;
 
-    public virtual Car? CarNavigation { get; set; }
+    public string CircuitLayout { get; set; } = null!;
 
-    public virtual Circuit? CircuitNavigation { get; set; }
+    public string CircuitCountry { get; set; } = null!;
 
-    public virtual Game? GameNameNavigation { get; set; }
+    public string CarCountry { get; set; } = null!;
+
+    public string IsCarMod { get; set; } = null!;
+
+    public string IsCircuitMod { get; set; } = null!;
 }

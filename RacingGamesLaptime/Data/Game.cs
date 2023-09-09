@@ -7,11 +7,9 @@ public partial class Game
 {
     public Guid Id { get; set; }
 
-    public string? Name { get; set; }
+    public string Name { get; set; } = null!;
 
-    public string? Platform { get; set; }
+    public string Platform { get; set; } = null!;
 
-    public int? ReleaseYear { get; set; }
-
-    public virtual ICollection<Laptime> Laptimes { get; set; } = new List<Laptime>();
+    public int ReleaseYear { get; set; }
 }
