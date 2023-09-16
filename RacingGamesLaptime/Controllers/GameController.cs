@@ -1,19 +1,24 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RacingGamesLaptime.Data;
+using RacingGamesLaptime.Models;
 
 namespace RacingGamesLaptime.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class GameController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAll()
+        private readonly RacingGamesLaptimeDbContext _rGLDbContext;
+
+        public GameController(RacingGamesLaptimeDbContext racingGaGamesLaptimeDbContext)
         {
-            RacingGamesLaptimeDbContext racingGamesLaptimeDbContext = new RacingGamesLaptimeDbContext();
-            var gameData = racingGamesLaptimeDbContext.Games.ToList();
-            return Ok(gameData);
+            _rGLDbContext = racingGaGamesLaptimeDbContext;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Game>> GetAllGames()
+        {
+            return _rGLDbContext.Game;
         }
     }
 }

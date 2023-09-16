@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RacingGamesLaptime.Data;
+using RacingGamesLaptime.Models;
 
 namespace RacingGamesLaptime.Controllers
 {
@@ -8,12 +8,17 @@ namespace RacingGamesLaptime.Controllers
     [ApiController]
     public class CircuitController : ControllerBase
     {
+        private readonly RacingGamesLaptimeDbContext _rGLDbContext;
+
+        public CircuitController(RacingGamesLaptimeDbContext racingGaGamesLaptimeDbContext) 
+        { 
+            _rGLDbContext = racingGaGamesLaptimeDbContext;
+        }
+
         [HttpGet]
-        public IActionResult GetAll() 
+        public ActionResult<IEnumerable<Circuit>> GetAllCircuits() 
         {
-            RacingGamesLaptimeDbContext racingGamesLaptimeDbContext = new RacingGamesLaptimeDbContext();
-            var circuitData = racingGamesLaptimeDbContext.Circuits.ToList();
-            return Ok(circuitData);
-        }           
+            return _rGLDbContext.Circuit;
+        }
     }
 }

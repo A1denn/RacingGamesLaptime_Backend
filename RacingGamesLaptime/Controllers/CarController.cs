@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RacingGamesLaptime.Data;
+using RacingGamesLaptime.Models;
 
 namespace RacingGamesLaptime.Controllers
 {
@@ -8,12 +8,17 @@ namespace RacingGamesLaptime.Controllers
     [ApiController]
     public class CarController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAll()
+        private readonly RacingGamesLaptimeDbContext _rGLDbContext;
+
+        public CarController(RacingGamesLaptimeDbContext racingGaGamesLaptimeDbContext)
         {
-            RacingGamesLaptimeDbContext racingGamesLaptimeDbContext = new RacingGamesLaptimeDbContext();
-            var carData = racingGamesLaptimeDbContext.Cars.ToList();
-            return Ok(carData);
+            _rGLDbContext = racingGaGamesLaptimeDbContext;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Car>> GetAllCars()
+        {
+            return _rGLDbContext.Car;
         }
     }
 }
