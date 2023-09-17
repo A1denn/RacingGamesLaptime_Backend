@@ -7,13 +7,13 @@ namespace RacingGamesLaptime
 {
     public class RacingGamesLaptimeDbContext : DbContext
     {
-        public virtual DbSet<Car> Car { get; set; }
+        public virtual DbSet<Car> Cars { get; set; }
 
-        public virtual DbSet<Circuit> Circuit { get; set; }
+        public virtual DbSet<Circuit> Circuits { get; set; }
 
-        public virtual DbSet<Game> Game { get; set; }
+        public virtual DbSet<Game> Games { get; set; }
 
-        public virtual DbSet<Laptime> Laptime { get; set; }
+        public virtual DbSet<Laptime> Laptimes { get; set; }
 
         public RacingGamesLaptimeDbContext(DbContextOptions<RacingGamesLaptimeDbContext> dbContextOptions) : base(dbContextOptions)
         {

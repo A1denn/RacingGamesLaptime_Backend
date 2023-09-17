@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RacingGamesLaptime.Models;
 
 namespace RacingGamesLaptime.Controllers
@@ -18,7 +17,24 @@ namespace RacingGamesLaptime.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Game>> GetAllGames()
         {
-            return _rGLDbContext.Game;
+            return _rGLDbContext.Games;
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Add(Game game)
+        {
+            await _rGLDbContext.Games.AddAsync(game);
+            await _rGLDbContext.SaveChangesAsync();
+            return Ok();
+        }
+
+        /*
+         {
+    "Id":"34a0a422-f00c-464f-a522-09165ac46da2",
+    "Name":"99998",
+    "Platform":"PC",
+    "ReleaseYear":2022
+}
+         */
     }
 }

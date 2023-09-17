@@ -21,6 +21,7 @@ if (app.Environment.IsDevelopment())
 */
 
 /* =========== Database Cotext Dependency Injection =========== */
+// reference https://www.youtube.com/watch?v=b1BSu0Wb2Rw&t=224s
 
 var connectionString = "Server=localhost;Port=3306;Database=racing_games_laptime_db;User=root;Password=wLgg4Da-AqBjtJ@4;";
 builder.Services.AddDbContext<RacingGamesLaptimeDbContext>(o => o.UseMySQL(connectionString));
